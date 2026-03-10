@@ -41,7 +41,7 @@ export default function ChatBot() {
     <>
       {/* Siri 风格边缘光晕效果 */}
       {isOpen && (
-        <div className="fixed inset-0 pointer-events-none z-40">
+        <div className="fixed inset-0 pointer-events-none z-[60]">
           <div className="siri-frost-overlay" />
           <div className="siri-edge-overlay">
             <div className="siri-edge siri-edge-top" />
@@ -55,14 +55,14 @@ export default function ChatBot() {
       {/* 聊天气泡按钮 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[var(--accent)] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300 z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[var(--accent)] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300 z-[70]"
       >
         {isOpen ? <FiX size={24} /> : <FiMessageCircle size={24} />}
       </button>
 
       {/* 聊天窗口 */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 md:w-96 h-[500px] bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50">
+        <div className="fixed bottom-24 right-6 w-80 md:w-96 h-[500px] bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[70]">
           {/* 头部 */}
           <div className="px-4 py-3 border-b border-[var(--border)] bg-[var(--bg)]">
             <h3 className="font-semibold text-[var(--text)]">Chat with AI</h3>
