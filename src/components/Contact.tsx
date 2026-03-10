@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,24 +21,21 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 px-6 md:px-20 lg:px-32">
       {/* 标题 */}
-      <ScrollReveal delay={40}>
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full border border-[var(--accent)] text-[var(--accent)] text-sm mb-4">
-            Get In Touch
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">
-            Let&apos;s Work Together
-          </h2>
-          <p className="text-[var(--muted)] max-w-xl mx-auto">
-            Ready to bring your ideas to life? I&apos;m here to help you build something amazing.
-          </p>
-        </div>
-      </ScrollReveal>
+      <div className="text-center mb-16">
+        <span className="inline-block px-4 py-2 rounded-full border border-[var(--accent)] text-[var(--accent)] text-sm mb-4">
+          Get In Touch
+        </span>
+        <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">
+          Let&apos;s Work Together
+        </h2>
+        <p className="text-[var(--muted)] max-w-xl mx-auto">
+          Ready to bring your ideas to life? I&apos;m here to help you build something amazing.
+        </p>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-12">
         {/* 左侧 - 联系信息 */}
-        <ScrollReveal delay={80}>
-          <div>
+        <div>
           <h3 className="text-xl font-semibold text-[var(--text)] mb-6">
             Contact Information
           </h3>
@@ -115,86 +111,83 @@ export default function Contact() {
               I&apos;m currently accepting new projects and would love to hear about yours.
             </p>
           </div>
-          </div>
-        </ScrollReveal>
+        </div>
 
         {/* 右侧 - 表单 */}
-        <ScrollReveal delay={180}>
-          <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
-            <h3 className="text-xl font-semibold text-[var(--text)] mb-6">
-              Send me a message
-            </h3>
+        <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
+          <h3 className="text-xl font-semibold text-[var(--text)] mb-6">
+            Send me a message
+          </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm text-[var(--text)] mb-2">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Your full name"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-[var(--text)] mb-2">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="your.email@example.com"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm text-[var(--text)] mb-2">Subject</label>
-                <input
-                  type="text"
-                  placeholder="What's this about?"
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                />
-              </div>
-
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-[var(--text)] mb-2">
-                  Message <span className="text-red-500">*</span>
+                  Full Name <span className="text-red-500">*</span>
                 </label>
-                <textarea
-                  placeholder="Tell me about your project, ideas, or just say hello..."
+                <input
+                  type="text"
+                  placeholder="Your full name"
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-lg bg-[var(--accent)] text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-              >
-                <FiSend size={18} />
-                Send Message
-              </button>
-
-              <div className="flex justify-between text-xs text-[var(--muted)] mt-4">
-                <span>✓ Usually responds within 24 hours</span>
-                <span>✓ Free consultation available</span>
+              <div>
+                <label className="block text-sm text-[var(--text)] mb-2">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="your.email@example.com"
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
               </div>
-            </form>
-          </div>
-        </ScrollReveal>
+            </div>
+
+            <div>
+              <label className="block text-sm text-[var(--text)] mb-2">Subject</label>
+              <input
+                type="text"
+                placeholder="What's this about?"
+                className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-[var(--text)] mb-2">
+                Message <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                placeholder="Tell me about your project, ideas, or just say hello..."
+                required
+                rows={5}
+                className="w-full px-4 py-3 rounded-lg bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 rounded-lg bg-[var(--accent)] text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+            >
+              <FiSend size={18} />
+              Send Message
+            </button>
+
+            <div className="flex justify-between text-xs text-[var(--muted)] mt-4">
+              <span>✓ Usually responds within 24 hours</span>
+              <span>✓ Free consultation available</span>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

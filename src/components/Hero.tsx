@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FiArrowUpRight, FiMail } from "react-icons/fi";
 
 const roles = [
   "Full Stack Developer",
@@ -52,14 +53,37 @@ export default function Hero() {
         <h1 className="mt-3 text-5xl md:text-7xl font-bold text-[var(--text)] leading-tight">
           Xiaoke Chen
         </h1>
-        <div className="mt-6 text-xl md:text-3xl font-medium min-h-[2.5rem]">
+        <div className="mt-6 text-xl md:text-3xl font-medium h-[2.75rem] md:h-[3.25rem] overflow-hidden">
           <span className="text-[var(--text)]">I build as a </span>
-          <span className="relative inline-block">
-            <span className="text-[var(--accent)]">{text}</span>
-            <span className="text-[var(--accent)] animate-pulse">|</span>
-            <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[var(--highlight)]/70" />
+          <span className="inline-block min-w-[20ch]">
+            <span className="relative inline-flex">
+              <span className="text-[var(--accent)] whitespace-nowrap">{text}</span>
+              <span className="text-[var(--accent)] animate-pulse">|</span>
+              <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[var(--highlight)]/70" />
+            </span>
           </span>
         </div>
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="#projects"
+            className="group inline-flex h-11 w-36 flex-shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          >
+            Projects
+            <FiArrowUpRight
+              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              size={16}
+            />
+          </a>
+          <a
+            href="#contact"
+            className="group inline-flex h-11 w-36 flex-shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          >
+            Contact
+            <FiMail className="transition-transform duration-300 group-hover:scale-105" size={16} />
+          </a>
+        </div>
+
         <div className="mt-8 flex items-center gap-3">
           <span className="text-[var(--muted)] text-sm">Connect:</span>
           <a

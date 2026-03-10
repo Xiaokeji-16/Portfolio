@@ -8,6 +8,7 @@ type ScrollRevealProps = {
   className?: string;
   delay?: number;
   duration?: number;
+  x?: number;
   y?: number;
   threshold?: number;
   once?: boolean;
@@ -18,6 +19,7 @@ export default function ScrollReveal({
   className = "",
   delay = 0,
   duration = 700,
+  x = 0,
   y = 28,
   threshold = 0.18,
   once = true,
@@ -53,6 +55,7 @@ export default function ScrollReveal({
   const style = {
     transitionDelay: `${delay}ms`,
     transitionDuration: `${duration}ms`,
+    "--reveal-x": `${x}px`,
     "--reveal-y": `${y}px`,
   } as CSSProperties;
 

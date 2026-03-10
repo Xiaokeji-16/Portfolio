@@ -27,7 +27,7 @@ export default function Projects() {
       {projects.map((project, index) => (
         <div
           key={index}
-          className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--accent)] transition-all duration-300"
+          className="group h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--accent)] transition-all duration-300"
         >
           {/* 项目截图 */}
           <div className="relative h-48 overflow-hidden bg-[var(--bg)]">
@@ -67,7 +67,7 @@ export default function Projects() {
 
             {/* 按钮 */}
             <div className="flex items-center justify-between">
-              
+              <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,7 +76,7 @@ export default function Projects() {
                 Live Demo
                 <FiExternalLink size={14} />
               </a>
-              
+              <a
                 href={project.detailsUrl}
                 className="flex items-center gap-1 px-4 py-2 rounded-lg border border-[var(--border)] text-[var(--text)] text-sm hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
               >
