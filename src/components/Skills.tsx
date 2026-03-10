@@ -20,7 +20,6 @@ import {
   SiFigma, 
   SiUnity,
 } from "react-icons/si";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const skillCategories = [
   {
@@ -65,42 +64,25 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-6 md:px-20 lg:px-32">
-      {/* 标题 */}
-      <ScrollReveal delay={40}>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)]">
-            Skills & Expertise<span className="text-[var(--highlight)]">.</span>
-          </h2>
-          <p className="mt-4 text-[var(--muted)] max-w-xl mx-auto">
-            A collection of technologies I&apos;m proficient with, from languages to frameworks and tools
-          </p>
-        </div>
-      </ScrollReveal>
-
-      {/* 技能分类 */}
-      <div className="space-y-12">
-        {skillCategories.map((category, index) => (
-          <ScrollReveal key={category.title} delay={index * 100}>
-            <div>
-              <h3 className="text-xl font-semibold text-[var(--text)] mb-4">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex items-center gap-2 px-4 py-2 bg-[var(--card)] border border-[var(--border)] rounded-full hover:border-[var(--accent)] transition-colors duration-300"
-                  >
-                    <skill.icon size={18} style={{ color: skill.color }} />
-                    <span className="text-sm text-[var(--text)]">{skill.name}</span>
-                  </div>
-                ))}
+    <div className="space-y-12">
+      {skillCategories.map((category) => (
+        <div key={category.title}>
+          <h3 className="text-xl font-semibold text-[var(--text)] mb-4">
+            {category.title}
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {category.skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="flex items-center gap-2 px-4 py-2 bg-[var(--card)] border border-[var(--border)] rounded-full hover:border-[var(--accent)] transition-colors duration-300"
+              >
+                <skill.icon size={18} style={{ color: skill.color }} />
+                <span className="text-sm text-[var(--text)]">{skill.name}</span>
               </div>
-            </div>
-          </ScrollReveal>
-        ))}
-      </div>
-    </section>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

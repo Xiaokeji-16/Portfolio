@@ -1,8 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
+import About from "@/components/About";
+import PortfolioTabs from "@/components/PortfolioTabs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
@@ -13,9 +12,8 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Projects />
-      <Skills />
-      <Experience />
+      <About />
+      <PortfolioTabs />
       <Contact />
       <Footer />
       <ChatBot />

@@ -1,13 +1,12 @@
 "use client";
 
 import { FiExternalLink, FiArrowRight } from "react-icons/fi";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const projects = [
   {
     title: "Project Name 1",
     description: "A brief description of your project. What problem does it solve? What technologies did you use?",
-    image: "/projects/project1.png", // 放在 public/projects/ 文件夹
+    image: "/projects/project1.png",
     liveUrl: "https://your-project-url.com",
     detailsUrl: "#",
     tags: ["Next.js", "React", "Tailwind CSS"],
@@ -20,89 +19,74 @@ const projects = [
     detailsUrl: "#",
     tags: ["React Native", "Firebase", "Node.js"],
   },
-  // 如果有更多项目可以继续添加
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 px-6 md:px-20 lg:px-32">
-      {/* 标题 */}
-      <ScrollReveal delay={40}>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--accent)] mb-4">
-            Portfolio Showcase
-          </h2>
-          <p className="text-[var(--muted)] max-w-2xl mx-auto">
-            Explore my journey through projects and technical expertise. Each project represents a milestone in my continuous learning path.
-          </p>
-        </div>
-      </ScrollReveal>
-
-      {/* 项目网格 */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <ScrollReveal key={index} delay={index * 120}>
-            <div className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--accent)] transition-all duration-300">
-              {/* 项目截图 */}
-              <div className="relative h-48 overflow-hidden bg-[var(--bg)]">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[var(--muted)]">
-                    No Image
-                  </div>
-                )}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, index) => (
+        <div
+          key={index}
+          className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--accent)] transition-all duration-300"
+        >
+          {/* 项目截图 */}
+          <div className="relative h-48 overflow-hidden bg-[var(--bg)]">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-[var(--muted)]">
+                No Image
               </div>
+            )}
+          </div>
 
-              {/* 项目信息 */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[var(--text)] mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-[var(--muted)] mb-4 line-clamp-2">
-                  {project.description}
-                </p>
+          {/* 项目信息 */}
+          <div className="p-6">
+            <h3 className="text-xl font-semibold text-[var(--text)] mb-2">
+              {project.title}
+            </h3>
+            <p className="text-sm text-[var(--muted)] mb-4 line-clamp-2">
+              {project.description}
+            </p>
 
-                {/* 技术标签 */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 rounded-md bg-[var(--bg)] text-[var(--muted)] text-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* 按钮 */}
-                <div className="flex items-center justify-between">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[var(--accent)] text-sm hover:underline"
-                  >
-                    Live Demo
-                    <FiExternalLink size={14} />
-                  </a>
-                  <a
-                    href={project.detailsUrl}
-                    className="flex items-center gap-1 px-4 py-2 rounded-lg border border-[var(--border)] text-[var(--text)] text-sm hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-                  >
-                    Details
-                    <FiArrowRight size={14} />
-                  </a>
-                </div>
-              </div>
+            {/* 技术标签 */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-1 rounded-md bg-[var(--bg)] text-[var(--muted)] text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
-          </ScrollReveal>
-        ))}
-      </div>
-    </section>
+
+            {/* 按钮 */}
+            <div className="flex items-center justify-between">
+              
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-[var(--accent)] text-sm hover:underline"
+              >
+                Live Demo
+                <FiExternalLink size={14} />
+              </a>
+              
+                href={project.detailsUrl}
+                className="flex items-center gap-1 px-4 py-2 rounded-lg border border-[var(--border)] text-[var(--text)] text-sm hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+              >
+                Details
+                <FiArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
