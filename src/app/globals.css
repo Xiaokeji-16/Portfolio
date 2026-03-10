@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+/* 默认深色模式 */
+:root {
+  --bg: #0f1419;
+  --card: #1a1f26;
+  --border: #2d333b;
+  --text: #e8e8e8;
+  --muted: #6b6b6b;
+  --accent: #3b82f6;
+  --highlight: #f97316;
+  --siri-frost: rgba(5, 10, 18, 0.34);
+  --siri-frost-sheen: rgba(196, 138, 255, 0.09);
+}
+
+/* 浅色模式 */
+.light {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --border: #e5e5e5;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #2563eb;
+  --highlight: #ea580c;
+  --siri-frost: rgba(250, 252, 255, 0.28);
+  --siri-frost-sheen: rgba(88, 123, 255, 0.08);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 滚动显现动画 */
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 28px), 0) scale(0.985);
+  filter: blur(6px);
+  transition-property: opacity, transform, filter;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* Siri 风格四边轮廓流光 */
+@keyframes siri-frost-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes siri-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes siri-drift-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes siri-drift-y {
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
+
+.siri-edge-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.siri-frost-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--siri-frost), var(--siri-frost)),
+    radial-gradient(120% 90% at 50% -10%, var(--siri-frost-sheen) 0%, transparent 60%);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  animation: siri-frost-in 220ms ease-out;
+}
+
+.siri-edge {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: siri-breathe 2.8s ease-in-out infinite;
+}
+
+.siri-edge-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, #d80066 0%, #5b21b6 38%, #d63f00 72%, #d80066 100%);
+  background-size: 220% 100%;
+  filter: blur(10px) saturate(3.9) brightness(0.9);
+  box-shadow: 0 0 14px rgba(216, 0, 102, 0.78);
+  animation: siri-drift-x 7.2s linear infinite, siri-breathe 2.8s ease-in-out infinite;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.siri-edge-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, #1e3a8a 0%, #0c4a6e 50%, #312e81 100%);
+  background-size: 220% 100%;
+  filter: blur(10px) saturate(3.9) brightness(0.9);
+  box-shadow: 0 0 14px rgba(30, 58, 138, 0.76);
+  animation: siri-drift-x 8.2s linear infinite reverse, siri-breathe 3s ease-in-out infinite;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.siri-edge-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  background: linear-gradient(180deg, #5b21b6 0%, #1e40af 52%, #0c4a6e 100%);
+  background-size: 100% 220%;
+  filter: blur(10px) saturate(3.7) brightness(0.9);
+  box-shadow: 0 0 14px rgba(67, 56, 202, 0.72);
+  animation: siri-drift-y 8.8s linear infinite, siri-breathe 2.7s ease-in-out infinite;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.siri-edge-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  background: linear-gradient(180deg, #9a3412 0%, #5b21b6 45%, #0c4a6e 100%);
+  background-size: 100% 220%;
+  filter: blur(10px) saturate(3.7) brightness(0.9);
+  box-shadow: 0 0 14px rgba(154, 52, 18, 0.68);
+  animation: siri-drift-y 9.4s linear infinite reverse, siri-breathe 3s ease-in-out infinite;
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+/* 浅色模式下增强可见度 */
+.light .siri-frost-overlay {
+  background:
+    linear-gradient(rgba(242, 247, 255, 0.05), rgba(242, 247, 255, 0.05)),
+    radial-gradient(120% 90% at 50% -10%, rgba(94, 118, 255, 0.48) 0%, transparent 62%);
+  backdrop-filter: blur(10px) saturate(1.34);
+  -webkit-backdrop-filter: blur(10px) saturate(1.34);
+}
+
+.light .siri-edge {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+.light .siri-edge-top {
+  background: linear-gradient(90deg, #d80066 0%, #5b21b6 38%, #d63f00 72%, #d80066 100%);
+  filter: blur(10px) saturate(3.9) brightness(0.9);
+  box-shadow: 0 0 14px rgba(216, 0, 102, 0.78);
+}
+
+.light .siri-edge-bottom {
+  background: linear-gradient(90deg, #1e3a8a 0%, #0c4a6e 50%, #312e81 100%);
+  filter: blur(10px) saturate(3.9) brightness(0.9);
+  box-shadow: 0 0 14px rgba(30, 58, 138, 0.76);
+}
+
+.light .siri-edge-left {
+  background: linear-gradient(180deg, #5b21b6 0%, #1e40af 52%, #0c4a6e 100%);
+  filter: blur(10px) saturate(3.7) brightness(0.9);
+  box-shadow: 0 0 14px rgba(67, 56, 202, 0.72);
+}
+
+.light .siri-edge-right {
+  background: linear-gradient(180deg, #9a3412 0%, #5b21b6 45%, #0c4a6e 100%);
+  filter: blur(10px) saturate(3.7) brightness(0.9);
+  box-shadow: 0 0 14px rgba(154, 52, 18, 0.68);
+}
+
+/* 背景彩色光斑动画 */
+@keyframes blob-move {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -30px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(30px, 10px) scale(1.05);
+  }
+}
+
+.bg-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: #FF3B30;  /* 红色 */
+  top: 10%;
+  right: 25%;
+  animation: blob-move 8s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 350px;
+  height: 350px;
+  background: #FFCC00;  /* 黄色 */
+  top: 15%;
+  right: 10%;
+  animation: blob-move 10s ease-in-out infinite reverse;
+}
+
+.blob-3 {
+  width: 350px;
+  height: 350px;
+  background: #007AFF;  /* 蓝色 */
+  bottom: 20%;
+  left: 10%;
+  animation: blob-move 12s ease-in-out infinite;
+}
+
+.blob-4 {
+  width: 300px;
+  height: 300px;
+  background: #34C759;  /* 绿色 */
+  bottom: 25%;
+  left: 25%;
+  animation: blob-move 9s ease-in-out infinite reverse;
+}
