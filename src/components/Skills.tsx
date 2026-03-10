@@ -1,23 +1,24 @@
 "use client";
 
-import { 
-  SiJavascript, 
-  SiTypescript, 
+import { motion } from "framer-motion";
+import {
+  SiJavascript,
+  SiTypescript,
   SiPython,
-  SiReact, 
-  SiNextdotjs, 
-  SiVuedotjs, 
-  SiNodedotjs, 
-  SiExpress, 
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiNodedotjs,
+  SiExpress,
   SiTailwindcss,
-  SiPostgresql, 
-  SiMysql, 
-  SiMongodb, 
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
   SiSupabase,
-  SiGit, 
-  SiDocker, 
-  SiVercel, 
-  SiFigma, 
+  SiGit,
+  SiDocker,
+  SiVercel,
+  SiFigma,
   SiUnity,
 } from "react-icons/si";
 
@@ -62,14 +63,44 @@ const skillCategories = [
   },
 ];
 
+const categoryVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const categoryItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 18,
+    filter: "blur(8px)",
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
+
 export default function Skills() {
   return (
-    <div className="space-y-12">
+    <motion.div
+      className="space-y-12"
+      variants={categoryVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ amount: 0.18 }}
+    >
       {skillCategories.map((category) => (
-        <div key={category.title}>
-          <h3 className="text-xl font-semibold text-[var(--text)] mb-4">
-            {category.title}
-          </h3>
+        <motion.div key={category.title} variants={categoryItemVariants}>
+          <h3 className="text-xl font-semibold text-[var(--text)] mb-4">{category.title}</h3>
           <div className="flex flex-wrap gap-3">
             {category.skills.map((skill) => (
               <div
@@ -81,8 +112,8 @@ export default function Skills() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

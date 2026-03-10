@@ -14,11 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* 背景彩色光斑 */}
-        <div className="bg-blob blob-1" />
-        <div className="bg-blob blob-2" />
-        <div className="bg-blob blob-3" />
-        <div className="bg-blob blob-4" />
         {children}
       </body>
     </html>

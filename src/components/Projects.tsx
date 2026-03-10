@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { FiExternalLink, FiArrowRight } from "react-icons/fi";
 
 const projects = [
@@ -21,15 +22,47 @@ const projects = [
   },
 ];
 
+const listVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(8px)",
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.42,
+    },
+  },
+};
+
 export default function Projects() {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <motion.div
+      className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+      variants={listVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ amount: 0.18 }}
+    >
       {projects.map((project, index) => (
-        <div
+        <motion.div
           key={index}
+          variants={itemVariants}
           className="group h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--accent)] transition-all duration-300"
         >
-          {/* 项目截图 */}
           <div className="relative h-48 overflow-hidden bg-[var(--bg)]">
             {project.image ? (
               <img
@@ -44,16 +77,10 @@ export default function Projects() {
             )}
           </div>
 
-          {/* 项目信息 */}
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-[var(--text)] mb-2">
-              {project.title}
-            </h3>
-            <p className="text-sm text-[var(--muted)] mb-4 line-clamp-2">
-              {project.description}
-            </p>
+            <h3 className="text-xl font-semibold text-[var(--text)] mb-2">{project.title}</h3>
+            <p className="text-sm text-[var(--muted)] mb-4 line-clamp-2">{project.description}</p>
 
-            {/* 技术标签 */}
             <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag) => (
                 <span
@@ -65,7 +92,6 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* 按钮 */}
             <div className="flex items-center justify-between">
               <a
                 href={project.liveUrl}
@@ -85,8 +111,8 @@ export default function Projects() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

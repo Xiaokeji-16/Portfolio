@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
 
 const experiences = [
@@ -19,30 +20,55 @@ const experiences = [
   },
 ];
 
+const listVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.06,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 22,
+    filter: "blur(8px)",
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.45,
+    },
+  },
+};
+
 export default function Experience() {
   return (
-    <div className="relative max-w-4xl mx-auto">
-      {/* 竖线 */}
+    <motion.div
+      className="relative max-w-4xl mx-auto"
+      variants={listVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ amount: 0.18 }}
+    >
       <div className="absolute left-6 top-0 bottom-0 w-px bg-[var(--border)] md:left-12" />
 
       {experiences.map((exp, index) => (
-        <div key={index} className="relative pl-16 md:pl-24 pb-12">
-          {/* 时间线圆点 */}
+        <motion.div key={index} variants={itemVariants} className="relative pl-16 md:pl-24 pb-12">
           <div className="absolute left-4 md:left-10 w-5 h-5 rounded-full bg-[var(--accent)] border-4 border-[var(--bg)]" />
-          
-          {/* 图标 */}
+
           <div className="absolute left-0 md:left-4 w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] -translate-x-1">
             <FiBriefcase size={20} />
           </div>
 
-          {/* 卡片 */}
           <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)]">
-            {/* 头部 */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
               <div>
-                <h3 className="text-xl font-semibold text-[var(--accent)]">
-                  {exp.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-[var(--accent)]">{exp.title}</h3>
                 <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-[var(--muted)]">
                   <span className="flex items-center gap-1">
                     <FiBriefcase size={14} />
@@ -65,12 +91,8 @@ export default function Experience() {
               </div>
             </div>
 
-            {/* 描述 */}
-            <p className="text-[var(--muted)] mb-4">
-              {exp.description}
-            </p>
+            <p className="text-[var(--muted)] mb-4">{exp.description}</p>
 
-            {/* Key Achievements */}
             <div className="mb-4">
               <h4 className="text-sm font-semibold text-[var(--text)] mb-2 flex items-center gap-2">
                 <span>✦</span> Key Achievements
@@ -85,7 +107,6 @@ export default function Experience() {
               </ul>
             </div>
 
-            {/* 技术标签 */}
             <div className="flex flex-wrap gap-2">
               {exp.skills.map((skill) => (
                 <span
@@ -97,8 +118,8 @@ export default function Experience() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
